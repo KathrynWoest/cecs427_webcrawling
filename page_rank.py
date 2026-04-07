@@ -4,7 +4,7 @@ import sys
 import file_io as fio
 #import crawl
 #import plot
-#import pagerank as pr
+import pagerank as pr
 
 
 def main():
@@ -49,6 +49,6 @@ def main():
         
         else:
             output_file = args[args.index("--pagerank_values") + 1]
-            #pr.calculate(user_graph, output_file)  # TODO: pr needs to check output file type to ensure it is .txt
+            pr.calculate(user_graph, output_file)
 
 main()

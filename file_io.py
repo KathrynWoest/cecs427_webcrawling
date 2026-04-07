@@ -15,8 +15,12 @@ def parse_graph(file_name):
         submitted_graph = nx.read_gml(file_name)
 
         # check if the graph is empty
-        if submitted_graph.number_of_nodes == 0 or submitted_graph.number_of_edges == 0:
+        if submitted_graph.number_of_nodes() == 0 or submitted_graph.number_of_edges() == 0:
             raise Exception("Program terminated because the graph has no nodes and/or no edges.")
+        
+        # check if the graph is undirected
+        if not submitted_graph.is_directed():
+            raise Exception("Program terminated because the graph is not directed. The graph must be directed.")
         
         return submitted_graph
     
