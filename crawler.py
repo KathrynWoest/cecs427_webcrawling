@@ -35,10 +35,10 @@ class GraphSpider(scrapy.Spider):
         self.G.add_node(current_url) # Add the current page as a node
 
         # List of extensions to ignore
-        forbidden_extensions = (
-            '.ris', '.xml', '.bib', '.pdf', 
-            '.rdf', '.rss', '.ttl', '.dn'
-        )
+        # forbidden_extensions = (
+        #     '.ris', '.xml', '.bib', '.pdf', 
+        #     '.rdf', '.rss', '.ttl', '.dn'
+        # )
 
         for a in response.css("a"):
             # Check if 'href' exists before doing anything else
@@ -47,12 +47,12 @@ class GraphSpider(scrapy.Spider):
                 continue
 
             link = response.urljoin(href).split('?')[0].split('#')[0] # Strip queries/anchors
+
+            if not link.endswith(".html"):
+                continue
      
-            # the link should be in the same domain, must not end with a forbidden extension,
-            # and must not be a self-loop
-            if (link.startswith(self.domain_filter) and 
-                not link.lower().endswith(forbidden_extensions) and 
-                link != current_url):
+            # the link should be in the same domain and must not be a self-loop
+            if (link.startswith(self.domain_filter) and link != current_url):
                 
                 self.G.add_edge(current_url, link)
                 yield response.follow(a, callback=self.parse)
