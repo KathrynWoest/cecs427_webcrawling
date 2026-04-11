@@ -92,7 +92,6 @@ class GraphSpider(scrapy.Spider):
         nx.write_gml(self.G, "out_graph.gml")
         print("Successfully saved graph to out_graph.gml")
 
-# File reading logic for the input text file
 def run_from_file(filename):
     """
     Reads crawling parameters from a file and starts the spider.
