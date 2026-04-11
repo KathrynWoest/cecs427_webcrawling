@@ -18,13 +18,13 @@ def main():
     # parse or generate graph
     else:
         # parse in graph from given .gml file
-        if "--input" in args and "--crawler" not in args:
+        if "--crawler" in args:
+            crawl_info = args[args.index("--crawler") + 1]  # TODO: crawl needs to check that the provided file is a .txt file
+            #user_graph = crawl.crawl(crawl_info)
+        elif "--input" in args:
             input_file = args[args.index("--input") + 1]
             user_graph = fio.parse_graph(input_file)
         # generate graph with given .txt file, override --input graph
-        elif "--crawler" in args and "--input" not in args:
-            crawl_info = args[args.index("--crawler") + 1]  # TODO: crawl needs to check that the provided file is a .txt file
-            #user_graph = crawl.crawl(crawl_info)
         # if there are 3 arguments and we aren't inputting a file, then not enough arguments to generate graph. terminate program.
         else:
             raise Exception("Program was terminated because it was missing '--input' or '--crawler' arguments and/or their input files.")
