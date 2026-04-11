@@ -7,7 +7,7 @@ def plot(gml_file, output_image="web_graph.png"):
 
     Inputs:
         gml_file (str): Path to the input GML file.
-        output_image (str): Filename for the saved plot image.
+        output_image (str): Filename for the saved plot image. Default name is `web_graph.png`.
     """
 
     # Loading the graph from the given gml file
@@ -36,6 +36,3 @@ def plot(gml_file, output_image="web_graph.png"):
 
     print("Opening graph window...")
     plt.show()
-
-# if __name__ == "__main__":
-#     plot('out_graph.gml')
