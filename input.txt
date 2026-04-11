@@ -1,0 +1,4 @@
+10
+quotes.toscrape.com
+https://quotes.toscrape.com/tag/humor/
+https://quotes.toscrape.com/tag/books/
