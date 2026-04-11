@@ -7,9 +7,12 @@ Completed By: Kathryn Woest (030131541) and Grace Flores (030169163)
 
 1. Clone this repo and open it on your IDE
 
-2. DEPENDENCIES: This program relies on two external libraries. To install them, ensure you are inside the project directory and run these commands:
+2. DEPENDENCIES: This program relies on five external libraries. To install them, ensure you are inside the project directory and run these commands:
     1. **NetworkX**, a library that provides `.gml` file parsing and writing, graph support, and analysis functions. To install, run: `pip install networkx[default]`
     2. **Plotly**, a library used for creating and plotting graphs. To install, run: `pip install plotly`
+    3. **Scrapy**, . To install, run `pip install scrapy`
+    4. **tqdm**, . To install, run `pip install tqdm`
+    5. **matplotlib**, . To install, run `pip install matplotlib`
 
 3. Run this program with: `python page_rank.py --crawler crawler.txt --input input_graph.gml --loglogplot --crawler_graph out_graph.gml --pagerank_values node_rank.txt`
     1. `--crawler` is the default argument to produce the graph, and will override `--input` if both exist in the arguments. However, one of them is required in order for the program to function.

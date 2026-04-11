@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 def plot(gml_file, output_image="web_graph.png"):
 
     try:
-        # Load the graph from the GML file
-        G = nx.read_gml(gml_file)
+        # Load the graph
+        G = gml_file
     except Exception as e:
         print(f"Error loading GML: {e}")
         return
