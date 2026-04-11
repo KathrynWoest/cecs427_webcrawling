@@ -5,9 +5,23 @@ import networkx as nx
 from tqdm import tqdm
 
 class GraphSpider(scrapy.Spider):
+    """
+    A Scrapy spider that crawls web pages within a specified domain and
+    constructs a directed graph of page links using NetworkX.
+    """
+
     name = "graph_spider"
 
     def __init__(self, max_nodes, domain_filter, start_urls, *args, **kwargs):
+        """
+        Initializes the spider with a node limit, domain filter, and seed URLs.
+
+        Inputs:
+            max_nodes (int): Maximum number of pages (nodes) to crawl.
+            domain_filter (str): Domain prefix to restrict crawling.
+            start_urls (list): List of initial seed URLs.
+        """
+
         super(GraphSpider, self).__init__(*args, **kwargs)
         self.max_nodes = int(max_nodes)
         self.domain_filter = domain_filter.strip()       
@@ -20,6 +34,14 @@ class GraphSpider(scrapy.Spider):
         self.pbar = tqdm(total=self.max_nodes, desc="Crawling Pages", unit="pg")
 
     def parse(self, response):
+        """
+        Parses a downloaded page, extracts valid HTML links within the domain,
+        and adds edges to the graph. Also schedules new pages to crawl.
+
+        Input:
+            response (scrapy.http.Response): The HTTP response of the current page.
+        """
+
         # Check if 'text/html' is in the Content-Type header
         content_type = response.headers.get("Content-Type", b"").decode().lower()
 
@@ -52,6 +74,13 @@ class GraphSpider(scrapy.Spider):
                 yield response.follow(a, callback=self.parse)
 
     def closed(self, reason):
+        """
+        Finalizes the crawl by saving the constructed graph to a GML file.
+
+        Input: 
+            reason (str): Reason why the spider was closed.
+        """
+
         self.pbar.close() # Clean up the bar
 
         # Ensuring exactly 100 nodes in the GML
@@ -65,6 +94,18 @@ class GraphSpider(scrapy.Spider):
 
 # File reading logic for the input text file
 def run_from_file(filename):
+    """
+    Reads crawling parameters from a file and starts the spider.
+
+    The format of the input file should be:
+    - Line 1: Maximum number of nodes
+    - Line 2: Domain filter (URL)
+    - Remaining lines: Seed URLs
+
+    Input:
+        filename (str): Path to the input configuration file.
+    """
+
     with open(filename, 'r') as f:
         lines = [line.strip() for line in f if line.strip()]
     
