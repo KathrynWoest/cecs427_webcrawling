@@ -12,8 +12,7 @@ def plot(gml_file, output_image="web_graph.png"):
         return
 
     plt.figure(figsize=(12, 8))
-    pos = nx.kamada_kawai_layout(G)    
-
+    pos = nx.spring_layout(G, seed=42, k=0.6, iterations=1)
     nx.draw(G, pos, 
             with_labels=True, 
             node_size=50, 
