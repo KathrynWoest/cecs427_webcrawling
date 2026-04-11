@@ -31,5 +31,5 @@ def plot(gml_file, output_image="web_graph.png"):
     print("Opening graph window...")
     plt.show()
 
-if __name__ == "__main__":
-    plot('out_graph.gml')
+# if __name__ == "__main__":
+#     plot('out_graph.gml')

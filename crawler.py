@@ -34,12 +34,6 @@ class GraphSpider(scrapy.Spider):
         current_url = response.url
         self.G.add_node(current_url) # Add the current page as a node
 
-        # List of extensions to ignore
-        # forbidden_extensions = (
-        #     '.ris', '.xml', '.bib', '.pdf', 
-        #     '.rdf', '.rss', '.ttl', '.dn'
-        # )
-
         for a in response.css("a"):
             # Check if 'href' exists before doing anything else
             href = a.attrib.get('href')
@@ -80,7 +74,7 @@ def run_from_file(filename):
     domain_filter = lines[1]
     seeds = lines[2:]
 
-    # Set up to mimic the behavior of a browser to bypass DBLP anti-crawling measures
+    # Set up to mimic the behavior of a browser to bypass anti-crawling measures
     process = CrawlerProcess(settings={
         'LOG_LEVEL': 'INFO',
         'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -90,15 +84,15 @@ def run_from_file(filename):
         'SCHEDULER_DISK_QUEUE': 'scrapy.squeues.PickleFifoDiskQueue',
         'SCHEDULER_MEMORY_QUEUE': 'scrapy.squeues.FifoMemoryQueue',
         
-        'DOWNLOAD_DELAY': 2.0,              # Wait 2 seconds between every page
-        'RANDOMIZE_DOWNLOAD_DELAY': True,   # Add a random variation (0.5x to 1.5x of delay)
-        'CONCURRENT_REQUESTS': 1,           # Only download 1 page at a time
+        'DOWNLOAD_DELAY': 2.0,              
+        'RANDOMIZE_DOWNLOAD_DELAY': True,   
+        'CONCURRENT_REQUESTS': 1,           
         'CONCURRENT_REQUESTS_PER_DOMAIN': 1,
-        'RETRY_TIMES': 5,                   # If it fails, try a few more times
+        'RETRY_TIMES': 5,                   
         'RETRY_HTTP_CODES': [429, 500, 502, 503, 504],
     })
     process.crawl(GraphSpider, max_nodes=max_nodes, domain_filter=domain_filter, start_urls=seeds)
     process.start()
 
-if __name__ == "__main__":
-    run_from_file('crawlingFile.txt')
+# if __name__ == "__main__":
+#     run_from_file('crawlingFile.txt')
