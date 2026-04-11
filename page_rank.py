@@ -2,8 +2,8 @@
 
 import sys
 import file_io as fio
-#import crawl
-#import plot
+import crawler
+import plot
 import pagerank as pr
 
 
@@ -20,18 +20,18 @@ def main():
         # parse in graph from given .gml file
         if "--crawler" in args:
             crawl_info = args[args.index("--crawler") + 1]  # TODO: crawl needs to check that the provided file is a .txt file
-            #user_graph = crawl.crawl(crawl_info)
+            user_graph = crawler.run_from_file(crawl_info)
+        # generate graph with given .txt file, override --input graph
         elif "--input" in args:
             input_file = args[args.index("--input") + 1]
             user_graph = fio.parse_graph(input_file)
-        # generate graph with given .txt file, override --input graph
         # if there are 3 arguments and we aren't inputting a file, then not enough arguments to generate graph. terminate program.
         else:
             raise Exception("Program was terminated because it was missing '--input' or '--crawler' arguments and/or their input files.")
 
     # call the plotting function
-    #if "--loglogplot" in args:
-        #plot.plot(user_graph)
+    if "--loglogplot" in args:
+        plot.plot(user_graph)
 
     # call the saving graph function
     if "--crawler_graph" in args:
