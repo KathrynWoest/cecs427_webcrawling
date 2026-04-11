@@ -19,8 +19,9 @@ def main():
     else:
         # parse in graph from given .gml file
         if "--crawler" in args:
-            crawl_info = args[args.index("--crawler") + 1]  # TODO: crawl needs to check that the provided file is a .txt file
-            user_graph = crawler.run_from_file(crawl_info)
+            crawl_info = args[args.index("--crawler") + 1]
+            crawler.run_from_file(crawl_info)
+            user_graph = fio.parse_graph("out_graph.gml")
         # generate graph with given .txt file, override --input graph
         elif "--input" in args:
             input_file = args[args.index("--input") + 1]

@@ -11,6 +11,7 @@ def store_pr(graph, output_file):
         with open(output_file, "w") as f:
             for node, rank in graph.nodes(data="page_rank"):
                 f.write(f"Node {node}: {rank}\n")
+        print(f"Page rank saved to {output_file} successfully.")
     except Exception as e:
         print(f"Something went wrong with the saving of the page rank results. Error:", e)
         return
@@ -79,4 +80,5 @@ def calculate(graph, output_file):
         return
 
     # store the results in the given output file
+    print("Page rank calculated successfully.")
     store_pr(newpr_graph, output_file)

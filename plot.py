@@ -10,9 +10,9 @@ def plot(gml_file, output_image="web_graph.png"):
         output_image (str): Filename for the saved plot image.
     """
 
-    # Loading the graph from the given gml file
+    # Loading the graph
     try:
-        G = nx.read_gml(gml_file)
+        G = gml_file
     except Exception as e:
         print(f"Error loading GML: {e}")
         return
