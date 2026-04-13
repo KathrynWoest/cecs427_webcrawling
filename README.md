@@ -30,7 +30,7 @@ Completed By: Kathryn Woest (030131541) and Grace Flores (030169163)
 
 
 ## Example Command and Output
-1. Command: `python3 page_rank.py --crawler crawler.txt --loglogplot`
+1. Command: `python3 page_rank.py --crawler crawlingFile.txt --loglogplot`
 2. Command: `python3 page_rank.py --input sm_graph.gml --pagerank_values node_rank.txt`
 3. Command: `python3 page_rank.py --crawler crawlingFile.txt --crawler_graph out_graph.gml`
 
