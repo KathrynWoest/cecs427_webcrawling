@@ -1,12 +1,13 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+from collections import Counter
 
 def plot(gml_file, output_image="web_graph.png"):
     """
     Loads a graph from a GML file and visualizes it using NetworkX and Matplotlib.
 
     Inputs:
-        gml_file (str): Path to the input GML file.
+        gml_file (str): The graph to be visualized.
         output_image (str): Filename for the saved plot image. Default name is `web_graph.png`.
     """
 
@@ -36,3 +37,34 @@ def plot(gml_file, output_image="web_graph.png"):
 
     print("Opening graph window...")
     plt.show()
+
+def loglog(graph):
+    """
+    Plots a log-log graph of the given graph's degree distribution.
+
+    Input: 
+        - graph (nx.DiGraph): The graph for which the log-log graph will be generated.
+    """
+
+    if type(graph) is None:
+        raise TypeError("The graph cannot be None. Please provide a valid GML file.")
+
+    # Calculating the degree of each node
+    degree_sequence = [d for n, d in graph.degree()]
+
+    # Counting the frequency of each degree and sorting
+    degree_counts = Counter(degree_sequence)
+    sorted_counts = sorted(degree_counts.items()) 
+    x, y = zip(*sorted_counts)
+
+    # Plotting the log-log graph
+    plt.figure(figsize=(8, 6))
+    plt.loglog(x, y, linestyle='-', color='#1f77b4')
+
+    plt.title("LogLog Plot")
+    plt.xlabel("number of nodes (log)")
+    plt.ylabel("degree (log)")
+
+    plt.grid(False) 
+    plt.show()
+
