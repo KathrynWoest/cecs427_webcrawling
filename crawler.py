@@ -3,6 +3,7 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.exceptions import CloseSpider
 import networkx as nx
 from tqdm import tqdm
+from pathlib import Path
 
 class GraphSpider(scrapy.Spider):
     """
@@ -104,6 +105,11 @@ def run_from_file(filename):
     Input:
         filename (str): Path to the input configuration file.
     """
+
+    if not isinstance(filename, str):
+        raise TypeError("Must provide a string for the file name.")
+    elif Path(filename).suffix.lower() != ".txt":
+        raise ValueError("Invalid file type. Must provide a .txt file")
 
     with open(filename, 'r') as f:
         lines = [line.strip() for line in f if line.strip()]
