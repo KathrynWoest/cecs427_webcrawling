@@ -41,6 +41,7 @@ def save_graph(graph, file_name):
     try:
         # creates output file and writes graph to it
         nx.write_gml(graph, file_name)
+        print(f"Crawler graph saved successfully to {file_name}.")
 
     except Exception as e:
         print("Saving file terminated due to an error in creating the save file or saving the graph. Provided error:", e)
