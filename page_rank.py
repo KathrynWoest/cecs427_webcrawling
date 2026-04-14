@@ -32,7 +32,7 @@ def main():
 
     # call the plotting function
     if "--loglogplot" in args:
-        plot.plot(user_graph)
+        plot.loglog(user_graph)
 
     # call the saving graph function
     if "--crawler_graph" in args:

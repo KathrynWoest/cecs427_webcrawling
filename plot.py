@@ -46,9 +46,6 @@ def loglog(graph):
         - graph (nx.DiGraph): The graph for which the log-log graph will be generated.
     """
 
-    if isinstance(graph, None):
-        raise TypeError("The graph cannot be None. Please provide a valid GML file.")
-
     # Calculating the degree of each node
     degree_sequence = [d for n, d in graph.degree()]
 
@@ -67,4 +64,3 @@ def loglog(graph):
 
     plt.grid(False) 
     plt.show()
-

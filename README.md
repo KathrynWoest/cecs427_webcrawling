@@ -3,7 +3,6 @@ Completed By: Kathryn Woest (030131541) and Grace Flores (030169163)
 
 
 ## Usage Instructions
-**NOTE:** `plot.py` relies on a command that is not compatible with WSL. This command automatically opens up the graph's visualization. If you are unable to use a different terminal like Powershell, comment out `plot.py`'s line 145 and instead manually open the generated `.html` file through your file explorer.
 
 1. Clone this repo and open it on your IDE
 
@@ -29,9 +28,9 @@ Completed By: Kathryn Woest (030131541) and Grace Flores (030169163)
 6. **crawler.py:** Contains the `GraphSpider` class used for page crawling and `run_from_file()` which runs the crawler. `GraphSpider` contains two functions: `parse()` parses each of the crawled pages and builds the `.gml` graph; `closed()` closes the crawler and generates the output directed graph named `out_graph.gml`. `run_from_file()` takes in the name of the input file and starts the crawling process. The input file must be in this format: *Line 1: Maximum number of  (pages) | Line 2: Domain filter (URL) | Remaining lines: Seed URLs.*
 
 
-## Example Command and Output
+## Example Commands and Outputs
 1. Command: `python3 page_rank.py --crawler crawlingFile.txt --loglogplot`
 2. Command: `python3 page_rank.py --input sm_graph.gml --pagerank_values node_rank.txt`
 3. Command: `python3 page_rank.py --crawler crawlingFile.txt --crawler_graph out_graph.gml`
 
-Outputs are annotated in this PDF: 
+Outputs are annotated in this PDF: https://pdflink.to/24ddb647/
