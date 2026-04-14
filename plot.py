@@ -43,7 +43,7 @@ def loglog(graph):
     Plots a log-log graph of the given graph's degree distribution.
 
     Input: 
-        - graph (nx.DiGraph): The graph for which the log-log graph will be generated.
+        graph (nx.DiGraph): The graph for which the log-log graph will be generated.
     """
 
     # Calculating the degree of each node
